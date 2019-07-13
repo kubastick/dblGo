@@ -14,20 +14,21 @@ const (
 	errorWhileSendingRequest = "error while sending request:"
 )
 
+// Discord Bot List Api Client
 type DBLApi struct {
-	accessToken    string
-	requestTimeout time.Duration
+	AccessToken    string        // DBL access token
+	RequestTimeout time.Duration // Timeout for all requests
 }
 
-// Returns new DBLApi struct initialized with optimal values
+// NewDBLApi returns new DBLApi struct initialized with optimal values
 func NewDBLApi(accessToken string) DBLApi {
 	return DBLApi{
-		accessToken:    accessToken,
-		requestTimeout: time.Second * 10,
+		AccessToken:    accessToken,
+		RequestTimeout: time.Second * 10,
 	}
 }
 
-// Post bot guild count to the website
+// PostStatsSimple sends bot guild count to the website
 func (d DBLApi) PostStatsSimple(guildCount int) error {
 	url := d.getRequestURL("/bots/stats")
 	params := map[string]string{"server_count": fmt.Sprintf("%d", guildCount)}
@@ -46,12 +47,12 @@ func (d DBLApi) PostStatsSimple(guildCount int) error {
 }
 
 func (d DBLApi) getBaseRequest() *resty.Request {
-	ctx, _ := context.WithTimeout(context.Background(), d.requestTimeout)
+	ctx, _ := context.WithTimeout(context.Background(), d.RequestTimeout)
 
-	return resty.R().SetHeader("Authorization", d.accessToken).SetContext(ctx)
+	return resty.R().SetHeader("Authorization", d.AccessToken).SetContext(ctx)
 }
 
-// Appends endpoint to baseURL, and return full request URL
+// getRequestURL appends endpoint to the baseURL, and return full request URL
 func (d DBLApi) getRequestURL(endpoint string) string {
 	return fmt.Sprintf("%s%s", baseURL, endpoint)
 }
