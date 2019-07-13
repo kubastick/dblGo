@@ -1,4 +1,4 @@
-module github.com/kubastick/dbl-go
+module github.com/kubastick/dblGo
 
 go 1.12
 

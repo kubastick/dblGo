@@ -49,7 +49,7 @@ func TestDBLApi_getBaseRequest(t *testing.T) {
 
 func TestDBLApi_PostStatsSimple(t *testing.T) {
 	api := getTestingApi()
-	err := api.PostStatsSimple(576)
+	err := api.PostStatsSimple(1)
 	if err != nil {
 		t.Error(errors.Wrap(err, "posting bot stats returned error:"))
 	}
