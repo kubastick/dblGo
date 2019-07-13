@@ -1,4 +1,4 @@
-package dblGo
+package dblgo
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func getTestingApi() DBLApi {
+func getTestingAPI() DBLApi {
 	envVariableName := "DBL_ACCESS_TOKEN"
 	accessToken := os.Getenv(envVariableName)
 	if accessToken == "" {
@@ -48,7 +48,7 @@ func TestDBLApi_getBaseRequest(t *testing.T) {
 }
 
 func TestDBLApi_PostStatsSimple(t *testing.T) {
-	api := getTestingApi()
+	api := getTestingAPI()
 	err := api.PostStatsSimple(1)
 	if err != nil {
 		t.Error(errors.Wrap(err, "posting bot stats returned error:"))

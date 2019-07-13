@@ -1,4 +1,4 @@
-package dblGo
+package dblgo
 
 import (
 	"context"
