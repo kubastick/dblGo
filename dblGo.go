@@ -14,7 +14,7 @@ const (
 	errorWhileSendingRequest = "error while sending request:"
 )
 
-// Discord Bot List Api Client
+// DBLApi is base api client struct
 type DBLApi struct {
 	AccessToken    string        // DBL access token
 	RequestTimeout time.Duration // Timeout for all requests
